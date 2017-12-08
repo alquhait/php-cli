@@ -40,7 +40,6 @@ $commander->addAction(function($command) {
         Output::writeln('You gotta be kidding me!', 'black', 'red');
     }
 });
-$commander->addOption('color', '-c', 'coloring output');
 $commander->addArgument('name1', 'name to show in terminal');
 $commander->addArgument('age1', 'age to show in terminal');
 $commander->addArgument('edu1', 'edu to show in terminal');
