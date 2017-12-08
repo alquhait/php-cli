@@ -1,0 +1,50 @@
+#!/usr/bin/env php
+<?php
+require "vendor/autoload.php";
+
+use CommandMan\src\Commander;
+use CommandMan\src\Output;
+use App\Download;
+
+$commander = Commander::getInstance();
+
+$commander->addCommand('Hello', 'say hello to person name');
+
+$commander->addAction(function($command) {
+    if ($command->getArgument('name')[0]) {
+        Output::writeln("Hello " . $command->getArgument('name')[0]);
+        Output::writeln("Hello " . $command->getArgument('age')[0]);
+        Output::writeln("Hello " . $command->getArgument('edu')[0]);
+    } else {
+        Output::writeln('You gotta be kidding me!', 'black', 'red');
+    }
+});
+
+$commander->addArgument('name', 'name to show in terminal');
+$commander->addArgument('age', 'age to show in terminal');
+$commander->addArgument('edu', 'edu to show in terminal');
+
+$commander->addCommand('Welcome', 'say hello to person name');
+
+$commander->addAction(function($command) {
+    //var_dump($command->arguments);
+    if ($command->getArgument('name1')[0]) {
+        $color = 'default';
+        if ($command->getOption('color')[0]) {
+            $color = 'green';
+        }
+        Output::writeln("Welcome " . $command->getArgument('name1')[0], $color);
+        Output::writeln("Welcome " . $command->getArgument('age1')[0], $color);
+        Output::writeln("Welcome " . $command->getArgument('edu1')[0], $color);
+    } else {
+        Output::writeln('You gotta be kidding me!', 'black', 'red');
+    }
+});
+$commander->addOption('color', '-c', 'coloring output');
+$commander->addArgument('name1', 'name to show in terminal');
+$commander->addArgument('age1', 'age to show in terminal');
+$commander->addArgument('edu1', 'edu to show in terminal');
+
+$commander->addCommand(new Download('download', 'download file from server to local'));
+
+$commander->run();

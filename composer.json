@@ -1,0 +1,16 @@
+{
+    "name": "CommandMan/CommandMan",
+    "description": "The console simple application.",
+    "keywords": ["console", "app", "command"],
+    "license": "MIT",
+    "type": "project",
+    "require": {
+        "php": ">=5.5.9"
+    },
+    "autoload": {
+        "psr-4": {
+            "CommandMan\\": "src/",
+            "App\\": "app/"
+        }
+    }
+}
